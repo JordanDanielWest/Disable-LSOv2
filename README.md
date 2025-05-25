@@ -1,38 +1,15 @@
-# Disable-LSOv2
+## 🛠️ Issue: Severely Reduced Upload Speed on Windows (0.6 Mbps)
 
-<#
-.SYNOPSIS
-    Disables Large Send Offload (LSO v2 for IPv4 and IPv6) to prevent upload speed degradation on Windows systems.
+**Problem:**  
+A Windows PC was experiencing extremely low upload speeds (~0.6 Mbps) despite a 1 Gbps connection and using the same Ethernet cable and switch as another PC that had normal performance (~40 Mbps upload). The issue persisted across restarts, driver updates, and cable swaps.
 
-.NOTES
-    Author          : ChatGPT (Generated for Jordan West)
-    LinkedIn        : https://www.linkedin.com/in/jordan-west-it/
-    GitHub          : https://github.com/JordanDanielWest
-    Date Created    : 2025-05-23
-    Last Modified   : 2025-05-23
-    Version         : 1.0
-    CVEs            : N/A
-    Plugin IDs      : N/A
-    STIG-ID         : CUSTOM-NET-0001
+**Root Cause:**  
+The culprit was **Large Send Offload v2 (LSO v2)** — a network adapter feature that offloads packet segmentation to the NIC. Some adapters or drivers handle this poorly, especially during uploads, leading to throttled performance.
 
-.TESTED ON
-    Date(s) Tested  : 2025-05-23
-    Tested By       : Jordan West
-    Systems Tested  : Windows 10, Windows 11
-    PowerShell Ver. : 5.1+
+---
 
-.USAGE
-    Run this script as Administrator to disable LSO v2 (IPv4 and IPv6) on all Ethernet adapters.
-    Example syntax:
-    PS C:\> .\Disable-LSOv2.ps1
+## ✅ Solution: Disable LSO v2 (IPv4 and IPv6)
 
-#>
+Disabling **LSO v2** for both **IPv4** and **IPv6** on the affected Ethernet adapter restored normal upload speeds instantly.
 
-# Disable LSO v2 on all Ethernet adapters
-Get-NetAdapterAdvancedProperty -Name "*" -DisplayName "Large Send Offload v2 (IPv4)" -ErrorAction SilentlyContinue | `
-    Set-NetAdapterAdvancedProperty -DisplayName "Large Send Offload v2 (IPv4)" -DisplayValue "Disabled"
-
-Get-NetAdapterAdvancedProperty -Name "*" -DisplayName "Large Send Offload v2 (IPv6)" -ErrorAction SilentlyContinue | `
-    Set-NetAdapterAdvancedProperty -DisplayName "Large Send Offload v2 (IPv6)" -DisplayValue "Disabled"
-
-Write-Host "Large Send Offload v2 (IPv4 and IPv6) has been disabled on all Ethernet adapters."
+> 📌 You can use the included `Disable-LSOv2.ps1` PowerShell script to apply this fix automatically across all Ethernet adapters.
