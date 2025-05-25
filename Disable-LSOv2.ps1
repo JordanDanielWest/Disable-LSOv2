@@ -3,7 +3,7 @@
     Disables Large Send Offload (LSO v2 for IPv4 and IPv6) to prevent upload speed degradation on Windows systems.
 
 .NOTES
-    Author          : ChatGPT (Generated for Jordan West)
+    Author          : Jordan West
     LinkedIn        : https://www.linkedin.com/in/jordan-west-it/
     GitHub          : https://github.com/JordanDanielWest
     Date Created    : 2025-05-23
@@ -16,7 +16,7 @@
 .TESTED ON
     Date(s) Tested  : 2025-05-23
     Tested By       : Jordan West
-    Systems Tested  : Windows 10, Windows 11
+    Systems Tested  : Windows 11
     PowerShell Ver. : 5.1+
 
 .USAGE
