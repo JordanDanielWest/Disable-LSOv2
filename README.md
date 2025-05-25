@@ -14,15 +14,15 @@ Disabling **LSO v2** for both **IPv4** and **IPv6** on the affected Ethernet ada
 
 LSO can wreck upload speeds for some systems.
 
-    Open Device Manager → Network Adapters → Right-click your Ethernet adapter → Properties
+Open Device Manager → Network Adapters → Right-click your Ethernet adapter → Properties
 
-    Go to the Advanced tab
+Go to the Advanced tab
 
-    Find and disable the following if present:
+Find and disable the following if present:
 
-        Large Send Offload v2 (IPv4)
+- Large Send Offload v2 (IPv4)
 
-        Large Send Offload v2 (IPv6)
+- Large Send Offload v2 (IPv6)
 
 Click OK, reboot, and retest.
 
